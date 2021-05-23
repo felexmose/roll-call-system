@@ -2,30 +2,29 @@
     <div class="login-container mat-elevation-z8">
         <div class="text">
             <div class="content">
-                <!-- <img src="../../../assets/hero-logos/logo-white.png" alt=""> -->
-                <p class="hero-text">Dont have a Hero app?<br>Contact us at +45 53 67 18 16</p>
+                
             </div>
         </div>
         <div class="login">
             <div class="content">
-                <p class="title">My <span>HERO </span>NetWork</p>
-                <mat-divider></mat-divider>
-                <p>Login to begin building your awesome NetWork App</p>
+                <p class="title">Roll Call System</p>
+                <!-- <mat-divider></mat-divider> -->
+                <p></p>
                 
                 <form class="login-form" [formGroup]="loginForm" (ngSubmit)="login()">
-                    <mat-form-field class="full-width ">
-                        <input matInput placeholder="Email" formControlName="email" [(ngModel)]="email">
-                    </mat-form-field>
+                    <!-- <mat-form-field class="full-width "> -->
+                        <input placeholder="Email" formControlName="email" [(ngModel)]="email">
+                   <!--  </mat-form-field> -->
                     <mat-error *ngIf="loginForm.controls.email.touched && !loginForm.controls.email.valid">
                         Please input a valid email
                     </mat-error>
 
-                    <mat-form-field class="full-width">
-                        <input matInput type="password" placeholder="Password" formControlName="password" [(ngModel)]="password">
-                    </mat-form-field>
+                    <!-- <mat-form-field class="full-width"> -->
+                        <input type="password" placeholder="Password" formControlName="password" [(ngModel)]="password">
+                    <!-- </mat-form-field> -->
                     <div >
-                        <button type="submit" class="login-button mat-elevation-z8" mat-button>Login</button>
-                        <p class="version-text">{{VERSION}}</p>
+                        <button type="submit" class="login-button mat-elevation-z8" >Login</button>
+                    
                     </div>
                 </form>
             </div>

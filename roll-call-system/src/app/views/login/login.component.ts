@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-login',
@@ -26,7 +27,7 @@ export class LoginComponent implements OnInit {
 
  VERSION: string;
 
- constructor(private fb: FormBuilder, /* private userSvc: UserService */) {
+ constructor(private fb: FormBuilder, private userSvc: UserService) {
    //this.VERSION = environment.VERSION;
  }
 
@@ -54,12 +55,17 @@ export class LoginComponent implements OnInit {
   * Passes the email and password as a LoginCredentials object
   */
  login() {
-   const credentials: any = {
+   console.log('login clicked');
+   this.userSvc.loginUser(this.email,this.password);
+
+   
+   
+/*    const credentials: any = {
      email: this.email,
      password: this.password
    };
 
-  // this.userSvc.login(credentials);
- }
+  // this.userSvc.login(credentials);*/
+ } 
 
 }
