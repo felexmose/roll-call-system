@@ -10,7 +10,7 @@ export class StudentService {
 
   constructor(private db: AngularFirestore) { }
 
-  async getStudent(): Promise<Student>{
+  async getStudent(){
     const query = await this.db.collection('students').ref.where('email', '==', environment.USER_EMAIL).get();
     const snapshot = query.docs[0];
     const data:any = snapshot.data();
