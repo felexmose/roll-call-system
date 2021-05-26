@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Student } from 'src/app/models/student';
 import { AttendanceService } from 'src/app/services/attendance/attendance.service';
+import { ClassService } from 'src/app/services/class/class.service';
+import { LocationService } from 'src/app/services/location/location.service';
 import { StudentService } from 'src/app/services/student/student.service';
 
 @Component({
@@ -14,14 +16,25 @@ export class StudentClassesComponent implements OnInit {
 
 
 
-  constructor(private studentSvc: StudentService, private attendaceSvc: AttendanceService) { }
+  constructor(private studentSvc: StudentService, private attendaceSvc: AttendanceService, private classSvc: ClassService, private locationSvc: LocationService) { }
 
   async ngOnInit(): Promise<void> {
     await this.setStudent();
     console.log('current student:');
     console.log(this.currentStudent);
-    console.log('rolling in student:xxx');
-    await this.attendaceSvc.rollIn('DB','11111112','xxx@yahoo.dk' );
+    //console.log('rolling in student:xxx');
+    //this.attendaceSvc.rollIn('DB','11111112','xxx@yahoo.dk' );
+
+    // get and set students gps location.
+    await this.locationSvc.getPosition().then(pos=>
+      {
+         console.log(`student Positon: ${pos.lng} ${pos.lat}`);
+         this.currentStudent.gpsLong = pos.lng;
+         this.currentStudent.gpsLat = pos.lat;
+      });
+    //console.log('setting class coords');
+    //this.setClassGpsCoords('SI');
+    //this.attendanceSvc.postAnttendance('SI');
 
   }
 
@@ -30,7 +43,9 @@ export class StudentClassesComponent implements OnInit {
 
   }
 
-  rollIn(class1: String){
+  
+  rollIn(className: string){
+    this.attendaceSvc.rollIn(className,this.currentStudent.gpsLat, this.currentStudent.gpsLong );
 
 
   }

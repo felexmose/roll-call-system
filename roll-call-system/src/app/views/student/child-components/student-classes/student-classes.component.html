@@ -3,7 +3,7 @@
 
     <div *ngFor="let c of currentStudent.classes">
         <div>
-            <p>{{c}}</p> <button>roll in</button>
+            <p>{{c}}</p> <button (click)="rollIn(c)">roll in</button>
         </div>
         
 

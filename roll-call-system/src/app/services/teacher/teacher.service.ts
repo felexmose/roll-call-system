@@ -22,6 +22,6 @@ export class TeacherService {
     console.log(teacher1);
     
     return teacher1;
-
   }
+
 }

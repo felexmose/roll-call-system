@@ -1,1 +1,11 @@
-<p>teacher-classes works!</p>
+<div>
+    <h4>Welcome teacher: {{currentTeacher.firstName}} {{currentTeacher.lastName}}</h4>
+
+    <div *ngFor="let c of currentTeacher.classes">
+        <div>
+            <p>{{c}}</p> <button (click)="startRollCall(c)">start roll call</button>
+        </div>
+        
+    </div>
+
+</div>
