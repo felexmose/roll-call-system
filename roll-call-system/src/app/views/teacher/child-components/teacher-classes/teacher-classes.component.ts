@@ -56,5 +56,10 @@ export class TeacherClassesComponent implements OnInit {
     
   }
 
+  seeStatistics(className: string){
+    console.log('show statistics for:' + className);
+
+  }
+
 
 }

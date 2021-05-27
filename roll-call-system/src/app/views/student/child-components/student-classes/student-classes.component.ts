@@ -46,7 +46,10 @@ export class StudentClassesComponent implements OnInit {
   
   rollIn(className: string){
     this.attendaceSvc.rollIn(className,this.currentStudent.gpsLat, this.currentStudent.gpsLong );
+  }
 
+  seeAttendance(className: string){
+    console.log('show attendance for:' + className);
 
   }
 
