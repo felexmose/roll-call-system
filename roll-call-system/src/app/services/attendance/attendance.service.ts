@@ -63,8 +63,11 @@ export class AttendanceService {
             // too late to roll in
             console.log('too late to roll in');     
     }
+  }
 
-    
+  async getAttendanceForSpecificStudent(className: string, studentsEmail: string) {
+    const query = await this.db.collection('attendance').ref.where('name','==',className).where('students','array-contains',studentsEmail).get();
+    return query.docs;
 
   }
 }

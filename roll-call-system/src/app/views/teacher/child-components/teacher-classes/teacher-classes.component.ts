@@ -17,6 +17,14 @@ export class TeacherClassesComponent implements OnInit {
 
   currentTeacher: Teacher = {id:'', firstName:'', lastName:'', gpsLat:0, gpsLong:0, email:'',classes:null}
 
+  saleData = [
+    { name: "Mobiles", value: 105000 },
+    { name: "Laptop", value: 55000 },
+    { name: "AC", value: 15000 },
+    { name: "Headset", value: 150000 },
+    { name: "Fridge", value: 20000 }
+  ];
+
   constructor(private teacherSvc: TeacherService, private locationSvc: LocationService, private classesSvc: ClassService, private attendanceSvc: AttendanceService) { }
 
   async ngOnInit(): Promise<void> {

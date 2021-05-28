@@ -16,6 +16,9 @@ import { HeaderComponent } from './shared-components/header/header.component';
 import { FooterComponent } from './shared-components/footer/footer.component';
 import { TeacherClassesComponent } from './views/teacher/child-components/teacher-classes/teacher-classes.component';
 import { RollCallListComponent } from './views/teacher/child-components/roll-call-list/roll-call-list.component';
+import { NgxChartsModule }from '@swimlane/ngx-charts';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StudentStatisticDialogComponent } from './dialogs/student-statistic-dialog/student-statistic-dialog.component';
 //import { MatIconModule, MatDividerModule, MatInputModule, MatButtonModule } from '@angular/material';
 
 @NgModule({
@@ -28,7 +31,8 @@ import { RollCallListComponent } from './views/teacher/child-components/roll-cal
     HeaderComponent,
     FooterComponent,
     TeacherClassesComponent,
-    RollCallListComponent
+    RollCallListComponent,
+    StudentStatisticDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +42,8 @@ import { RollCallListComponent } from './views/teacher/child-components/roll-cal
     AngularFirestoreModule,
     ReactiveFormsModule,
     FormsModule,
+    BrowserAnimationsModule,
+    NgxChartsModule
   
     
   ],
