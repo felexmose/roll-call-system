@@ -18,7 +18,7 @@ import { TeacherClassesComponent } from './views/teacher/child-components/teache
 import { RollCallListComponent } from './views/teacher/child-components/roll-call-list/roll-call-list.component';
 import { NgxChartsModule }from '@swimlane/ngx-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { StudentStatisticDialogComponent } from './dialogs/student-statistic-dialog/student-statistic-dialog.component';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 //import { MatIconModule, MatDividerModule, MatInputModule, MatButtonModule } from '@angular/material';
 
 @NgModule({
@@ -31,8 +31,7 @@ import { StudentStatisticDialogComponent } from './dialogs/student-statistic-dia
     HeaderComponent,
     FooterComponent,
     TeacherClassesComponent,
-    RollCallListComponent,
-    StudentStatisticDialogComponent
+    RollCallListComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +42,9 @@ import { StudentStatisticDialogComponent } from './dialogs/student-statistic-dia
     ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule,
-    NgxChartsModule
+    NgxChartsModule,
+    MDBBootstrapModule.forRoot()
+    
   
     
   ],

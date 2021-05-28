@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MDBModalRef, MDBModalService } from 'angular-bootstrap-md';
 import { Student } from 'src/app/models/student';
 import { AttendanceService } from 'src/app/services/attendance/attendance.service';
 import { ClassService } from 'src/app/services/class/class.service';
@@ -14,9 +15,13 @@ export class StudentClassesComponent implements OnInit {
 
   currentStudent:Student = {id:'', firstName:'', lastName:'', gpsLat:0,gpsLong:0,email:'',classes:null}
 
+  attendance: string[];
+
+  modalRef: MDBModalRef;
 
 
-  constructor(private studentSvc: StudentService, private attendaceSvc: AttendanceService, private classSvc: ClassService, private locationSvc: LocationService) { }
+
+  constructor(private studentSvc: StudentService, private attendaceSvc: AttendanceService, private classSvc: ClassService, private locationSvc: LocationService, private modalService: MDBModalService) { }
 
   async ngOnInit(): Promise<void> {
     await this.setStudent();
@@ -50,7 +55,7 @@ export class StudentClassesComponent implements OnInit {
 
   seeAttendance(className: string){
     console.log('show attendance for:' + className);
-
+    
   }
 
 
