@@ -18,7 +18,7 @@ import { TeacherClassesComponent } from './views/teacher/child-components/teache
 import { RollCallListComponent } from './views/teacher/child-components/roll-call-list/roll-call-list.component';
 import { NgxChartsModule }from '@swimlane/ngx-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
+
 //import { MatIconModule, MatDividerModule, MatInputModule, MatButtonModule } from '@angular/material';
 
 @NgModule({
@@ -43,7 +43,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     FormsModule,
     BrowserAnimationsModule,
     NgxChartsModule,
-    MDBBootstrapModule.forRoot()
+ 
     
   
     

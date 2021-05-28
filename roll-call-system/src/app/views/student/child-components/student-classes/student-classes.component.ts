@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MDBModalRef, MDBModalService } from 'angular-bootstrap-md';
+
 import { Student } from 'src/app/models/student';
 import { AttendanceService } from 'src/app/services/attendance/attendance.service';
 import { ClassService } from 'src/app/services/class/class.service';
@@ -17,11 +17,11 @@ export class StudentClassesComponent implements OnInit {
 
   attendance: string[];
 
-  modalRef: MDBModalRef;
+  //modalRef: MDBModalRef;
 
 
 
-  constructor(private studentSvc: StudentService, private attendaceSvc: AttendanceService, private classSvc: ClassService, private locationSvc: LocationService, private modalService: MDBModalService) { }
+  constructor(private studentSvc: StudentService, private attendaceSvc: AttendanceService, private classSvc: ClassService, private locationSvc: LocationService, /* private modalService: MDBModalService */) { }
 
   async ngOnInit(): Promise<void> {
     await this.setStudent();
