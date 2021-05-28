@@ -1,11 +1,31 @@
 <div>
-    <h4>Welcome teacher: {{currentTeacher.firstName}} {{currentTeacher.lastName}}</h4>
-
+    <div style="text-align: center; margin: 1rem;">
+        <p class="h4 mb-4">Welcome teacher:</p>
+        <p class="h4 mb-4">{{currentTeacher.firstName}} {{currentTeacher.lastName}}</p>
+    </div>
     <div *ngFor="let c of currentTeacher.classes">
-        <div>
-            <p>{{c}}</p> <button (click)="startRollCall(c)">start roll call</button> &nbsp; <button (click)="seeStatistics(c)">see statistics</button>
-        </div>
-        
+
+        <mdb-card style="margin: 1rem; max-width: 50rem;">
+            <!--Card image-->
+            <mdb-card-body>
+
+                <!--Title-->
+                <mdb-card-title>
+                    <h4>{{c}}</h4>
+                </mdb-card-title>
+
+                <!--Text-->
+                <mdb-card-text> Start roll call for class {{c}}, after you have started the roll call, students have 10 minutes to enroll.
+                </mdb-card-text>
+
+                <div class="row" style="justify-content: center;">
+                    <a class="col-lg-4 col-sm-6" mdbBtn color="primary" mdbWavesEffect (click)="startRollCall(c)">Start Roll Call</a>
+                    <a class="col-lg-4 col-sm-6" mdbBtn color="primary" mdbWavesEffect (click)="seeStatistics(c)">See Statistics</a>
+                </div>
+            </mdb-card-body>
+        </mdb-card>
+
+
     </div>
 
 </div>
