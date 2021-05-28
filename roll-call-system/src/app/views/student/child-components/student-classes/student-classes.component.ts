@@ -40,7 +40,6 @@ export class StudentClassesComponent implements OnInit {
     //console.log('setting class coords');
     //this.setClassGpsCoords('SI');
     //this.attendanceSvc.postAnttendance('SI');
-
   }
 
   async setStudent(){
