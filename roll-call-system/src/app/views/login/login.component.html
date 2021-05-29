@@ -1,33 +1,37 @@
-<div class="main-container">
-    <div class="login-container mat-elevation-z8">
-        <div class="text">
-            <div class="content">
-                
+<!-- Default form login -->
+<div class="row" style="justify-content: center; margin: 1rem;" >
+    <form class="text-center p-5 col-lg-6 col-sm-12 z-depth-5" style="margin-top: 5rem;" [formGroup]="loginForm" (ngSubmit)="login()">
+    
+        <p class="h4 mb-4">Sign in</p>
+    
+        <!-- Email -->
+        <input type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail"
+            formControlName="email" [(ngModel)]="email">
+        <mat-error *ngIf="loginForm.controls.email.touched && !loginForm.controls.email.valid">
+            Please input a valid email
+        </mat-error>
+    
+        <!-- Password -->
+        <input type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password"
+            formControlName="password" [(ngModel)]="password">
+    
+            <div>
+                <!-- Remember me -->
+                <mdb-checkbox [default]="true">Remember me</mdb-checkbox>
             </div>
-        </div>
-        <div class="login">
-            <div class="content">
-                <p class="title">Roll Call System</p>
-                <!-- <mat-divider></mat-divider> -->
-                <p></p>
-                
-                <form class="login-form" [formGroup]="loginForm" (ngSubmit)="login()">
-                    <!-- <mat-form-field class="full-width "> -->
-                        <input placeholder="Email" formControlName="email" [(ngModel)]="email">
-                   <!--  </mat-form-field> -->
-                    <mat-error *ngIf="loginForm.controls.email.touched && !loginForm.controls.email.valid">
-                        Please input a valid email
-                    </mat-error>
-
-                    <!-- <mat-form-field class="full-width"> -->
-                        <input type="password" placeholder="Password" formControlName="password" [(ngModel)]="password">
-                    <!-- </mat-form-field> -->
-                    <div >
-                        <button type="submit" class="login-button mat-elevation-z8" >Login</button>
-                    
-                    </div>
-                </form>
+            <div>
+                <!-- Forgot password -->
+                <a href="">Forgot password?</a>
             </div>
-        </div>
-    </div>
+    
+        <!-- Sign in button -->
+        <button mdbBtn color="info" block="true" class="my-4" type="submit">Sign in</button>
+    
+        <!-- Register -->
+        <p>Not a member?
+            <a href="">Register</a>
+        </p>
+    
+    </form>
 </div>
+<!-- Default form login -->

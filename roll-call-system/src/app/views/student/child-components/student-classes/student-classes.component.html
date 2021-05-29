@@ -1,26 +1,36 @@
 <div>
-    <h4>Welcome student: {{currentStudent.firstName}} {{currentStudent.lastName}}</h4>
-
+    <div style="text-align: center; margin: 1rem;">
+        <p class="h4 mb-4">Welcome student:</p>
+        <p class="h4 mb-4">{{currentStudent.firstName}} {{currentStudent.lastName}}</p>
+    </div>
     <div *ngFor="let c of currentStudent.classes">
-        <div>
-            <p>{{c}}</p> <button (click)="rollIn(c)">roll in</button> &nbsp; <button (click)="seeAttendance(c)">see attendance</button>
-        </div> 
+
+
+        <mdb-card style="margin: 1rem; max-width: 50rem;">
+            <!--Card image-->
+            <mdb-card-img src="/assets/icons/software.jpeg" alt="Card image cap"></mdb-card-img>
+            <!--Card content-->
+            <mdb-card-body>
+
+                <!--Title-->
+                <mdb-card-title>
+                    <h4>{{c}}</h4>
+                </mdb-card-title>
+
+                <!--Text-->
+                <mdb-card-text> When the teacher has started the roll call you have 10 minutes to enroll. Additionally
+                    you must be within 100 meters of the school
+                </mdb-card-text>
+
+                <div class="row" style="justify-content: center;">
+                    <a class="col-lg-4 col-sm-6" mdbBtn color="primary" mdbWavesEffect (click)="rollIn(c)">Enroll</a>
+                    <a class="col-lg-4 col-sm-6" mdbBtn color="primary" mdbWavesEffect (click)="seeAttendance(c)">See Attendance</a>
+                </div>
+            </mdb-card-body>
+        </mdb-card>
+
+
     </div>
 
 </div>
 
- <div *ngIf="showAttendance">
-    <ngx-charts-bar-vertical 
-        [view]="[1000,400]"
-        [results]="saleData"
-        [xAxisLabel]="'Products'"
-        [legendTitle]="'Product Sale Chart'"
-        [yAxisLabel]="'Sale'"
-        [legend]="true"
-        [showXAxisLabel]="true"
-        [showYAxisLabel]="true"
-        [xAxis]="true"
-        [yAxis]="true"
-        [gradient]="true">
-    </ngx-charts-bar-vertical>
-</div>
