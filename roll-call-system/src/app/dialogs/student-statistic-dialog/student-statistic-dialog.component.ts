@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { Student } from 'src/app/models/student';
+import { MDBModalRef } from 'angular-bootstrap-md';
 
 @Component({
   selector: 'app-student-statistic-dialog',
@@ -8,9 +9,14 @@ import { Student } from 'src/app/models/student';
 })
 export class StudentStatisticDialogComponent implements OnInit {
 
-  
+  data: any;
 
-  constructor() { }
+  /* saleData = [
+    { name: "fravære", value: 20 },
+    { name: "tilstede", value: 40}
+  ]; */
+
+  constructor(public modalRef: MDBModalRef) { }
 
   ngOnInit(): void {
   }

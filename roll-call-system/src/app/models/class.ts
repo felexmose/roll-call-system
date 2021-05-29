@@ -6,4 +6,6 @@ export class Class {
     systemCode: string;
     gpsLat:number;
     gpsLong: number; 
+    classesHeld: number;
+    numberOfStudents: number;
 }

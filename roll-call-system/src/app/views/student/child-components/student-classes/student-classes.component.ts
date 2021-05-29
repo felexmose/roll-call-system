@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MDBModalRef, MDBModalService } from 'angular-bootstrap-md';
+import { StudentStatisticDialogComponent } from 'src/app/dialogs/student-statistic-dialog/student-statistic-dialog.component';
 import { Attendance } from 'src/app/models/attendance';
+import { Class } from 'src/app/models/class';
 
 import { Student } from 'src/app/models/student';
 import { AttendanceService } from 'src/app/services/attendance/attendance.service';
@@ -18,7 +21,15 @@ export class StudentClassesComponent implements OnInit {
 
   attendance: string[];
 
+  modalRef: MDBModalRef;
+
+
   showAttendance: boolean = false;
+
+  currentClass: Class = {id:'', name: '', rollCall: null,
+    startTime: null, systemCode: '',
+    gpsLat:null, gpsLong:null, classesHeld: null,
+    numberOfStudents: null };
 
   //modalRef: MDBModalRef;
   studentAttendance:Attendance[] = [];
@@ -33,7 +44,7 @@ export class StudentClassesComponent implements OnInit {
 
 
 
-  constructor(private studentSvc: StudentService, private attendanceSvc: AttendanceService, private classSvc: ClassService, private locationSvc: LocationService, /* private modalService: MDBModalService */) { }
+  constructor(private modalService: MDBModalService,private studentSvc: StudentService, private attendanceSvc: AttendanceService, private classSvc: ClassService, private locationSvc: LocationService, /* private modalService: MDBModalService */) { }
 
   async ngOnInit(): Promise<void> {
     await this.setStudent();
@@ -66,12 +77,33 @@ export class StudentClassesComponent implements OnInit {
 
   async seeAttendance(className: string){
     console.log('show attendance for:' + className);
+    this.currentClass = await this.classSvc.getSpecificClass(className);
     this.studentAttendance = await this.attendanceSvc.getAttendanceForSpecificStudent(className, this.currentStudent.email);
     this.showAttendance = !this.showAttendance;
-    
+    this.openStatisticModal();
   }
+    /**
+   * Opens the modal that shows the statistics
+   * @param attendanceData
+   */
+     openStatisticModal() {
+       const attendanceData: any = [{name:'absent', value:this.studentAttendance.length }, {name:'classes', value:this.currentClass.classesHeld}]
 
-
+      const modalOptions = {
+        backdrop: true,
+        keyboard: true,
+        focus: true,
+        show: false,
+        ignoreBackdropClick: false,
+        class: 'modal-lg modal-dialog-centered',
+        containerClass: '',
+        animated: true,
+        data: {
+          data: attendanceData,
+        }
+      };
   
+      this.modalRef = this.modalService.show(StudentStatisticDialogComponent, modalOptions);
+    }
 
 }

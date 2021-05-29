@@ -20,6 +20,7 @@ import { NgxChartsModule }from '@swimlane/ngx-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { IconsModule } from 'angular-bootstrap-md'
+import { StudentStatisticDialogComponent } from './dialogs/student-statistic-dialog/student-statistic-dialog.component';
 //import { MatIconModule, MatDividerModule, MatInputModule, MatButtonModule } from '@angular/material';
 
 @NgModule({
@@ -32,7 +33,8 @@ import { IconsModule } from 'angular-bootstrap-md'
     HeaderComponent,
     FooterComponent,
     TeacherClassesComponent,
-    RollCallListComponent
+    RollCallListComponent,
+    StudentStatisticDialogComponent
   ],
   imports: [
     BrowserModule,
