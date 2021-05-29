@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Attendance } from 'src/app/models/attendance';
 
 import { Student } from 'src/app/models/student';
 import { AttendanceService } from 'src/app/services/attendance/attendance.service';
@@ -17,11 +18,22 @@ export class StudentClassesComponent implements OnInit {
 
   attendance: string[];
 
+  showAttendance: boolean = false;
+
   //modalRef: MDBModalRef;
+  studentAttendance:Attendance[] = [];
+
+  saleData = [
+    { name: "Mobiles", value: 105000 },
+    { name: "Laptop", value: 55000 },
+    { name: "AC", value: 15000 },
+    { name: "Headset", value: 150000 },
+    { name: "Fridge", value: 20000 }
+  ];
 
 
 
-  constructor(private studentSvc: StudentService, private attendaceSvc: AttendanceService, private classSvc: ClassService, private locationSvc: LocationService, /* private modalService: MDBModalService */) { }
+  constructor(private studentSvc: StudentService, private attendanceSvc: AttendanceService, private classSvc: ClassService, private locationSvc: LocationService, /* private modalService: MDBModalService */) { }
 
   async ngOnInit(): Promise<void> {
     await this.setStudent();
@@ -49,11 +61,13 @@ export class StudentClassesComponent implements OnInit {
 
   
   rollIn(className: string){
-    this.attendaceSvc.rollIn(className,this.currentStudent.gpsLat, this.currentStudent.gpsLong );
+    this.attendanceSvc.rollIn(className,this.currentStudent.gpsLat, this.currentStudent.gpsLong );
   }
 
-  seeAttendance(className: string){
+  async seeAttendance(className: string){
     console.log('show attendance for:' + className);
+    this.studentAttendance = await this.attendanceSvc.getAttendanceForSpecificStudent(className, this.currentStudent.email);
+    this.showAttendance = !this.showAttendance;
     
   }
 

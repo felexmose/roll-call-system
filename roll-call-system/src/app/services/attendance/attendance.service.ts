@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import * as firebase from 'firebase';
+import { Attendance } from 'src/app/models/attendance';
+import { Student } from 'src/app/models/student';
 import { environment } from 'src/environments/environment';
 import { LocationService } from '../location/location.service';
 
@@ -66,8 +68,22 @@ export class AttendanceService {
   }
 
   async getAttendanceForSpecificStudent(className: string, studentsEmail: string) {
-    const query = await this.db.collection('attendance').ref.where('name','==',className).where('students','array-contains',studentsEmail).get();
-    return query.docs;
+   const studentAttendance = [];
+    await this.db.collection('attendance').ref.where('name','==',className).where('students','array-contains',studentsEmail)
+            .get()
+            .then((querySnapshot)=> {
+              querySnapshot.forEach((doc)=> {
+                const data1:any = doc.data();
+                console.log(doc.id);
+                console.log('data1:');
+                console.log(data1);
+                const attendance:Attendance = {id:doc.id, className:data1.name, date: data1.date, students: data1.students }
+                studentAttendance.push(attendance);
+
+              })
+            });
+    return studentAttendance;
+  
 
   }
 }

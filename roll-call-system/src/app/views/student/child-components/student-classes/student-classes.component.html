@@ -4,9 +4,23 @@
     <div *ngFor="let c of currentStudent.classes">
         <div>
             <p>{{c}}</p> <button (click)="rollIn(c)">roll in</button> &nbsp; <button (click)="seeAttendance(c)">see attendance</button>
-        </div>
-        
-
+        </div> 
     </div>
 
+</div>
+
+ <div *ngIf="showAttendance">
+    <ngx-charts-bar-vertical 
+        [view]="[1000,400]"
+        [results]="saleData"
+        [xAxisLabel]="'Products'"
+        [legendTitle]="'Product Sale Chart'"
+        [yAxisLabel]="'Sale'"
+        [legend]="true"
+        [showXAxisLabel]="true"
+        [showYAxisLabel]="true"
+        [xAxis]="true"
+        [yAxis]="true"
+        [gradient]="true">
+    </ngx-charts-bar-vertical>
 </div>
