@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MDBModalRef, MDBModalService } from 'angular-bootstrap-md';
+import { StudentStatisticDialogComponent } from 'src/app/dialogs/student-statistic-dialog/student-statistic-dialog.component';
+import { TeacherStatisticDialogComponent } from 'src/app/dialogs/teacher-statistic-dialog/teacher-statistic-dialog.component';
+import { Class } from 'src/app/models/class';
 import { Teacher } from 'src/app/models/teacher';
 import { AttendanceService } from 'src/app/services/attendance/attendance.service';
 import { ClassService } from 'src/app/services/class/class.service';
@@ -17,6 +21,9 @@ export class TeacherClassesComponent implements OnInit {
 
   currentTeacher: Teacher = {id:'', firstName:'', lastName:'', gpsLat:0, gpsLong:0, email:'',classes:null}
 
+  currentClass: Class = {id:'', name:'', rollCall: null, startTime: null, systemCode:'', gpsLat:null, 
+                          gpsLong:null, classesHeld:null,numberOfStudents:null}
+
   saleData = [
     { name: "Mobiles", value: 105000 },
     { name: "Laptop", value: 55000 },
@@ -25,7 +32,9 @@ export class TeacherClassesComponent implements OnInit {
     { name: "Fridge", value: 20000 }
   ];
 
-  constructor(private teacherSvc: TeacherService, private locationSvc: LocationService, private classesSvc: ClassService, private attendanceSvc: AttendanceService) { }
+  modalRef: MDBModalRef;
+
+  constructor(private modalService: MDBModalService, private teacherSvc: TeacherService, private locationSvc: LocationService, private classesSvc: ClassService, private attendanceSvc: AttendanceService) { }
 
   async ngOnInit(): Promise<void> {
     await this.setTeacher();
@@ -64,10 +73,41 @@ export class TeacherClassesComponent implements OnInit {
     
   }
 
-  seeStatistics(className: string){
+  async seeStatistics(className: string){
     console.log('show statistics for:' + className);
+    //this.currentClass = await this.classesSvc.getSpecificClass(className);
+    const numberOfStudentsAttendanceData = await this.attendanceSvc.getNumberOfStudentAttendanceForSpecificClass(className);
+    console.log('student attendance data:');
+    console.log(numberOfStudentsAttendanceData);
+
+    this.openStatisticModal(numberOfStudentsAttendanceData);
 
   }
+
+      /**
+   * Opens the modal that shows the statistics
+   * @param attendanceData
+   */
+       openStatisticModal(attendanceData:any[]) {
+        //const attendanceData: any = [{name:'absent', value:averageStudentAttendance }, {name:'classes', value:this.currentClass.numberOfStudents}]
+ 
+       const modalOptions = {
+         backdrop: true,
+         keyboard: true,
+         focus: true,
+         show: false,
+         ignoreBackdropClick: false,
+         class: 'modal-lg modal-dialog-centered',
+         containerClass: '',
+         animated: true,
+         data: {
+           data: attendanceData,
+         }
+       };
+   
+       this.modalRef = this.modalService.show(TeacherStatisticDialogComponent, modalOptions);
+     }
+
 
 
 }

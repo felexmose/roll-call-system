@@ -84,4 +84,23 @@ export class AttendanceService {
             });
     return studentAttendance;
   }
+
+  async getNumberOfStudentAttendanceForSpecificClass(className: string){
+    let studentAttendanceData: any[] = [];
+
+    await this.db.collection('attendance').ref.where('name', '==', className)
+            .get()
+            .then((querySnapshot)=> {
+              querySnapshot.forEach((doc)=>{
+                const data1:any = doc.data();
+                console.log(doc.id);
+                console.log('data1:');
+                console.log(data1);
+                const info:any = {name:data1.date, value: data1.students.length};
+                studentAttendanceData.push(info);      
+              })
+            })
+
+            return studentAttendanceData;
+  }
 }
