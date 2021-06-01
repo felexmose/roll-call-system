@@ -72,7 +72,24 @@ export const getAttendanceForGivenStudent = functions.https.onRequest(async (req
   }
 }) 
 
+//firebase function that sets the class' GPS coordinates based on the teachers gps coordinates into the specific class database table.
+export const setTeachersGpsCoords = functions.https.onRequest(async (req, res)=> {
+  try{
+    const requestBody = req.body;
+    const className = requestBody.className;
+    const lat = requestBody.lat;
+    const long = requestBody.long;
 
+    const query = await db.collection('classes').ref.where('name', '==',className ).get();
+    query.docs[0].ref.update({gpsLat: lat , 
+                              gpsLong: long,
+                              rollCall:true,
+                            startTime: Date.now()});
+
+  } catch (error){
+    res.status(500).send(error);
+  }
+})
 
 
 export const helloWorld = functions.https.onRequest((request, response) => {
