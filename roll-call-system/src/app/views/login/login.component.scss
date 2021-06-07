@@ -1,0 +1,91 @@
+$primary: #fe7950;
+$secondary: #3b3b3b;
+$background: #282727;
+
+.main-container{
+    //background-image: url(../../../assets/hero-logos/banner-bg.png);
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.login-container{
+    margin: 0 auto;
+    width: 50%;
+    display: flex;
+}
+
+.text{
+    //background-image: url(../../../assets/hero-logos/banner-bg.png);
+    background-size: cover;
+    width: 35%;
+    text-align: center;
+}
+
+.login{
+    background: #ffffffbd;
+    width: 65%;
+}
+
+.content{
+    margin: 2rem;
+}
+
+.hero-text{
+    color: white;
+}
+
+.title {
+    font-size: 2rem;
+    color: #404040;
+    margin-bottom: 0.5rem;
+}
+
+.title span {
+    color: #FD7950;
+}
+
+.icon{
+    vertical-align: middle;
+    height: 30px;
+    width: 30px;
+}
+
+.full-width{
+    width: 100%;
+}
+
+.login-form{
+    margin-top: 3rem;
+}
+
+  // Button
+.login-button{
+    width: 25%;
+    margin-top: 1rem;
+    background: $primary;
+    color: $secondary;
+    
+    transition: background-color 0.3s linear; 
+    animation-name: fadeInOpacity;
+    animation-timing-function: ease-in;
+    animation-duration: 0.3s;
+    
+    }
+    
+.login-button:hover{
+    background: $secondary;
+    color: $primary;
+    
+    transition: background-color 0.3s linear; 
+    animation-name: fadeInOpacity;
+    animation-timing-function: ease-in;
+    animation-duration: 0.3s;
+}
+
+.version-text{
+    color: #fe795069;
+}

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CustomValidators } from 'ng2-validation';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +10,62 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  /*
+  * FormGroup used for formcontrol in the addSponsor form
+  */
+ loginForm: FormGroup;
 
-  ngOnInit(): void {
-  }
+ /**
+  * ngModel property for email
+  */
+ email: string;
+
+ /**
+  * ngModel property for password
+  */
+ password: string;
+
+ VERSION: string;
+
+ constructor(private fb: FormBuilder, private userSvc: UserService) {
+   //this.VERSION = environment.VERSION;
+ }
+
+ /**
+  * Creates the login form
+  */
+ ngOnInit(): void {
+   this.createForm();
+ }
+
+ /**
+  * Creates a login form
+  * sets email validation for email through ng2-validation
+  * and password must just not be empty
+  */
+ createForm(){
+   this.loginForm = this.fb.group({
+     email: ['', CustomValidators.email],
+     password: ['',  Validators.required],
+   })
+ }
+
+ /**
+  * Sends a login request through the UserService
+  * Passes the email and password as a LoginCredentials object
+  */
+ login() {
+   console.log('login clicked');
+   this.userSvc.loginUser(this.email,this.password);
+
+   
+   
+/*    const credentials: any = {
+     email: this.email,
+     password: this.password
+   };
+
+  // this.userSvc.login(credentials);*/
+ } 
 
 }
